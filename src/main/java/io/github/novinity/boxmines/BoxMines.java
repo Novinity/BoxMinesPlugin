@@ -29,7 +29,7 @@ public final class BoxMines extends JavaPlugin {
         }
 
         // TODO Add resource id
-        Integer resourceId = 865856342;
+        Integer resourceId = 114178;
         new UpdateChecker(this, resourceId).getVersion(version -> {
             if (this.getDescription().getVersion().equals(version)) {
                 getLogger().info("There is not a new update available.");
