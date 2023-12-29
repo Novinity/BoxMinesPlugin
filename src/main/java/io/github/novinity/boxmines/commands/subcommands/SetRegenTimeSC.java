@@ -63,7 +63,7 @@ public class SetRegenTimeSC extends SubCommand {
             RegenIntervals.destroyRegenInterval(mineName);
             player.sendMessage(ChatColor.AQUA + mineName + ChatColor.GREEN + " will no longer automatically regenerate.");
         } else {
-            RegenIntervals.createRegenInterval(mineName, timeInSeconds, true);
+            RegenIntervals.createRegenInterval(mineName, timeInSeconds);
             player.sendMessage(ChatColor.AQUA + mineName + ChatColor.GREEN + " will now automatically regenerate every " +
                     ChatColor.GOLD + timeInSeconds.toString() + ChatColor.GREEN + " seconds.");
         }
