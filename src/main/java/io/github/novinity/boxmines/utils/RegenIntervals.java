@@ -12,7 +12,7 @@ import java.util.logging.Level;
 public class RegenIntervals {
     private static HashMap<String, Integer> taskIds = new HashMap<String, Integer>();
 
-    public static boolean createRegenInterval(String mineName, Integer intervalInSeconds, boolean sendMessage) {
+    public static boolean createRegenInterval(String mineName, Integer intervalInSeconds) {
         try {
             if (taskIds.containsKey(mineName)) {
                 destroyRegenInterval(mineName);
@@ -21,10 +21,14 @@ public class RegenIntervals {
                 @Override
                 public void run() {
                     RegenMine.regenMine(mineName);
-                    if (sendMessage) {
-                        for (Player p : BoxMines.getInstance().getServer().getOnlinePlayers()) {
-                            p.sendMessage(ChatColor.AQUA + mineName + ChatColor.GOLD + " has been regenerated!");
+                    try {
+                        if (BoxMines.getInstance().getConfig().getBoolean("mines."+mineName+".announceRegen")) {
+                            for (Player p : BoxMines.getInstance().getServer().getOnlinePlayers()) {
+                                p.sendMessage(ChatColor.AQUA + mineName + ChatColor.GOLD + " has been regenerated!");
+                            }
                         }
+                    } catch (Exception e) {
+                        // nothing
                     }
                 }
             }, intervalInSeconds * 20L, intervalInSeconds * 20L);

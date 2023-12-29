@@ -28,7 +28,6 @@ public final class BoxMines extends JavaPlugin {
             getLogger().log(Level.SEVERE, "WorldEdit not detected! This plugin will likely be unable to load without it.");
         }
 
-        // TODO Add resource id
         Integer resourceId = 114178;
         new UpdateChecker(this, resourceId).getVersion(version -> {
             if (this.getDescription().getVersion().equals(version)) {

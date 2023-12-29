@@ -28,6 +28,7 @@ public class CommandManager implements TabCompleter, CommandExecutor {
         subCommands.add(new RegenerateSC());
         subCommands.add(new TPSC());
         subCommands.add(new ReloadSC());
+        subCommands.add(new SetAnnounceRegenSC());
     }
 
     public ArrayList<SubCommand> getSubCommands() {
@@ -46,6 +47,7 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 add("tp");
                 add("regenerate");
                 add("setregentime");
+                add("setannounceregen");
                 add("reload");
             }};
             return new ArrayList<String>() {{
@@ -56,7 +58,8 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 }
             }};
         } else if (args.length == 2) {
-            if (args[0].equals("remove") || args[0].equals("setregentime") || args[0].equals("set") || args[0].equals("unset") || args[0].equals("regenerate") || args[0].equals("tp")) {
+            if (args[0].equals("remove") || args[0].equals("setregentime") || args[0].equals("set") || args[0].equals("unset") || args[0].equals("regenerate") ||
+                    args[0].equals("tp") || args[0].equals("setannounceregen")) {
                 try {
                     Set<String> keys = Objects.requireNonNull(BoxMines.getInstance().getConfig().getConfigurationSection("mines")).getKeys(false);
                     return new ArrayList<String>() {{
