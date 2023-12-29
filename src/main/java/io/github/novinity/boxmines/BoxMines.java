@@ -34,7 +34,7 @@ public final class BoxMines extends JavaPlugin {
                 getLogger().info("There is not a new update available.");
             } else {
                 getLogger().info("There is a new update available! Current Version: " + this.getDescription().getVersion() + " - New version: " + version);
-                getLogger().info("Download here: " + "https://api.spigotmc.org/legacy/update.php?resource=" + resourceId + "/~");
+                getLogger().info("Download here: " + "https://www.spigotmc.org/resources/boxmines.114178/");
             }
         });
 
