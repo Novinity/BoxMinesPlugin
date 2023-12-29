@@ -1,0 +1,9 @@
+name: BoxMines
+version: '1.0.0'
+main: io.github.novinity.boxmines.BoxMines
+api-version: '1.19'
+commands:
+  boxmines:
+    aliases:
+      - bm
+    description: The plugin for BoxMines
