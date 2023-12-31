@@ -1,23 +1,15 @@
 package io.github.novinity.boxmines.commands.subcommands;
 
-import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.regions.Region;
-import com.sk89q.worldedit.session.SessionManager;
-import com.sk89q.worldedit.session.SessionOwner;
-import com.sk89q.worldedit.world.World;
 import io.github.novinity.boxmines.BoxMines;
 import io.github.novinity.boxmines.commands.SubCommand;
-import io.github.novinity.boxmines.utils.RegenMine;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.Array;
 import java.util.logging.Level;
 
 public class AddSC extends SubCommand {

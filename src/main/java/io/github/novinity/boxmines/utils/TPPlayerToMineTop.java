@@ -13,7 +13,7 @@ public class TPPlayerToMineTop {
                 highestY = pos2.getBlockY();
             }
 
-            player.teleport(new Location(player.getWorld(), player.getX(), highestY+1, player.getZ()));
+            player.teleport(new Location(player.getWorld(), player.getLocation().getX(), highestY+1, player.getLocation().getZ()));
         } catch (Exception e) {
             return false;
         }
