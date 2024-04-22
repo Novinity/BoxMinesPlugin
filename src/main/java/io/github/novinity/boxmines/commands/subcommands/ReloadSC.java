@@ -29,6 +29,11 @@ public class ReloadSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.reload")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         player.sendMessage(ChatColor.RED + "Reloading Box Mines...");
 
         BoxMines.getInstance().reloadConfig();

@@ -29,6 +29,11 @@ public class RemoveSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.remove")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         if (args.length < 2 || args[1].isEmpty()) {
             player.sendMessage(ChatColor.RED + "You must provide the name of the mine you'd like to remove!");
             return;

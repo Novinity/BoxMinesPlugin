@@ -33,6 +33,11 @@ public class SetSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.set")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         // args[1] is mineName
         // args[2] is block
         // args[3] is percentage

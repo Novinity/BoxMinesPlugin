@@ -28,6 +28,11 @@ public class SetAnnounceRegenSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.setannounceregen")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         if (args.length < 2 || args[1].isEmpty()) {
             player.sendMessage(ChatColor.RED + "You must provide a mine to toggle for!");
             return;

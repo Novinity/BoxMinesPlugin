@@ -3,6 +3,7 @@ package io.github.novinity.boxmines.commands.subcommands;
 import io.github.novinity.boxmines.BoxMines;
 import io.github.novinity.boxmines.commands.SubCommand;
 import io.github.novinity.boxmines.utils.GetCenterPoint;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -31,6 +32,11 @@ public class TPSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.tp")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         Location pos1 = BoxMines.getInstance().getConfig().getLocation("mines."+args[1]+".pos1");
         Location pos2 = BoxMines.getInstance().getConfig().getLocation("mines."+args[1]+".pos2");
 

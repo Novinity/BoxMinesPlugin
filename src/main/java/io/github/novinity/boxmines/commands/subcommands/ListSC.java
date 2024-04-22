@@ -31,6 +31,11 @@ public class ListSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.list")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         player.sendMessage(ChatColor.AQUA + "Mines:");
         Set<String> keys = null;
         try {

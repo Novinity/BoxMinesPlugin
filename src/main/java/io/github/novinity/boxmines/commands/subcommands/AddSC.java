@@ -35,6 +35,11 @@ public class AddSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.add")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         Region selectedRegion = null;
         BlockVector3 pos1 = null;
         BlockVector3 pos2 = null;

@@ -31,6 +31,11 @@ public class SetRegenTimeSC extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
+        if (!player.hasPermission("boxmines.setregentime")) {
+            player.sendMessage(ChatColor.RED + "No permission!");
+            return;
+        }
+
         // args[1] is the minename
         // args[2] is in time in seconds
 
