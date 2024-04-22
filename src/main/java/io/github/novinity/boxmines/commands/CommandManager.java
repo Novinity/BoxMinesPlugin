@@ -37,6 +37,8 @@ public class CommandManager implements TabCompleter, CommandExecutor {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+        if (!sender.hasPermission("boxmines.any"))
+            return null;
         if (args.length == 1) {
             ArrayList<String> possibilities = new ArrayList<String>() {{
                 add("add");
