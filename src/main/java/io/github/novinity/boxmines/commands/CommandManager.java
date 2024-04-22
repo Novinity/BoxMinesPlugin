@@ -3,6 +3,7 @@ package io.github.novinity.boxmines.commands;
 
 import io.github.novinity.boxmines.BoxMines;
 import io.github.novinity.boxmines.commands.subcommands.*;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -106,6 +107,11 @@ public class CommandManager implements TabCompleter, CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (sender instanceof Player p) {
+            if (!sender.hasPermission("boxmines.any")) {
+                p.sendMessage(ChatColor.RED + "No permission!");
+                return true;
+            }
+
             if (args.length > 0) {
                 for (int i = 0; i < getSubCommands().size(); i++) {
                     if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())) {
