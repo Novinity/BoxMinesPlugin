@@ -20,7 +20,11 @@ public class CommandManager implements TabCompleter, CommandExecutor {
     public ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public CommandManager() {
-        subCommands.add(new AddSC());
+        subCommands.add(new ClearSC());
+        if (BoxMines.worldeditEnabled)
+            subCommands.add(new AddWESC());
+        else
+            subCommands.add(new AddSC());
         subCommands.add(new RemoveSC());
         subCommands.add(new ListSC());
         subCommands.add(new SetRegenTimeSC());
@@ -30,6 +34,8 @@ public class CommandManager implements TabCompleter, CommandExecutor {
         subCommands.add(new TPSC());
         subCommands.add(new ReloadSC());
         subCommands.add(new SetAnnounceRegenSC());
+        subCommands.add(new Pos1SC());
+        subCommands.add(new Pos2SC());
     }
 
     public ArrayList<SubCommand> getSubCommands() {
@@ -43,6 +49,7 @@ public class CommandManager implements TabCompleter, CommandExecutor {
         if (args.length == 1) {
             ArrayList<String> possibilities = new ArrayList<String>() {{
                 add("add");
+                add("clear");
                 add("remove");
                 add("list");
                 add("set");
@@ -52,6 +59,8 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 add("setregentime");
                 add("setannounceregen");
                 add("reload");
+                add("pos1");
+                add("pos2");
             }};
             return new ArrayList<String>() {{
                 for (String possibility : possibilities) {
@@ -62,7 +71,7 @@ public class CommandManager implements TabCompleter, CommandExecutor {
             }};
         } else if (args.length == 2) {
             if (args[0].equals("remove") || args[0].equals("setregentime") || args[0].equals("set") || args[0].equals("unset") || args[0].equals("regenerate") ||
-                    args[0].equals("tp") || args[0].equals("setannounceregen")) {
+                    args[0].equals("tp") || args[0].equals("setannounceregen") || args[0].equals("clear")) {
                 try {
                     Set<String> keys = Objects.requireNonNull(BoxMines.getInstance().getConfig().getConfigurationSection("mines")).getKeys(false);
                     return new ArrayList<String>() {{
@@ -77,7 +86,7 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 }
             }
         } else if (args.length == 3) {
-            if (args[0].equals("add") || args[0].equals("set")) {
+            if (args[0].equals("set")) {
                 return new ArrayList<String>() {{
                     for (Material m : Material.values()) {
                         if (m.isBlock() && m.name().startsWith(args[2].toUpperCase())) {
@@ -98,6 +107,10 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 } catch (Exception e) {
                     return new ArrayList<String>();
                 }
+            } else if (args[0].equals("add")) {
+                return new ArrayList<String>() {{
+                    add("-i");
+                }};
             }
         }
 
@@ -117,6 +130,8 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                     if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())) {
                         if (!getSubCommands().get(i).getRequiredPermission().isEmpty() || p.hasPermission(getSubCommands().get(i).getRequiredPermission())) {
                             getSubCommands().get(i).perform(p, args);
+                        } else {
+                            sender.sendMessage(ChatColor.RED + "Command does not exist!");
                         }
                     }
                 }

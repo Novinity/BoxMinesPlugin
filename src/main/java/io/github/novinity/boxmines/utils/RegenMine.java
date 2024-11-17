@@ -69,4 +69,21 @@ public class RegenMine {
 
         return true;
     }
+
+    public static boolean clearMine(String mineName) {
+        try {
+            Location pos1 = BoxMines.getInstance().getConfig().getLocation("mines." + mineName + ".pos1");
+            Location pos2 = BoxMines.getInstance().getConfig().getLocation("mines." + mineName + ".pos2");
+
+            List<Block> blocksInArea = SelectArea.select(pos1, pos2, pos1.getWorld());
+
+            for (Block block : blocksInArea) {
+                block.setType(Material.AIR);
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
 }

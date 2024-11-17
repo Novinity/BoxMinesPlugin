@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 
 import java.util.logging.Level;
 
-public class AddSC extends SubCommand {
+public class AddWESC extends SubCommand {
     @Override
     public String getName() {
         return "add";
@@ -43,10 +43,44 @@ public class AddSC extends SubCommand {
             return;
         }
 
+        boolean useWE = true;
+        BoxMines.getInstance().getLogger().log(Level.ALL, args[0]);
+        BoxMines.getInstance().getLogger().log(Level.ALL, args[1]);
+        BoxMines.getInstance().getLogger().log(Level.ALL, args[2]);
+        if (args.length == 3 && args[2].equalsIgnoreCase("-i")) {
+            useWE = false;
+        }
+
         Vector3 pos1 = null;
         Vector3 pos2 = null;
 
-        if (!BoxMines.worldeditEnabled) {
+        if (useWE) {
+            try {
+                com.sk89q.worldedit.regions.Region selectedRegion = null;
+                selectedRegion = com.sk89q.worldedit.WorldEdit.getInstance().getSessionManager()
+                        .get(com.sk89q.worldedit.bukkit.BukkitAdapter.adapt(player))
+                        .getSelection(com.sk89q.worldedit.bukkit.BukkitAdapter.adapt(player.getWorld()));
+
+                pos1 = new Vector3(selectedRegion.getMinimumPoint().getX(), selectedRegion.getMinimumPoint().getY(), selectedRegion.getMinimumPoint().getZ());
+                pos2 = new Vector3(selectedRegion.getMaximumPoint().getX(), selectedRegion.getMaximumPoint().getY(), selectedRegion.getMaximumPoint().getZ());
+            } catch (Exception e) {
+                PositionalDataObject obj = PositionData.getPositionData(player);
+                if (obj == null) {
+                    player.sendMessage(ChatColor.RED + "You do not have any area selected!");
+                    return;
+                }
+                if (obj.pos1 == null) {
+                    player.sendMessage(ChatColor.RED + "Position 1 not set!");
+                    return;
+                }
+                if (obj.pos2 == null) {
+                    player.sendMessage(ChatColor.RED + "Position 2 not set!");
+                    return;
+                }
+                pos1 = obj.pos1;
+                pos2 = obj.pos2;
+            }
+        } else {
             PositionalDataObject obj = PositionData.getPositionData(player);
             if (obj == null) {
                 player.sendMessage(ChatColor.RED + "You do not have any area selected!");

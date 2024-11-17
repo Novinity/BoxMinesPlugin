@@ -1,5 +1,5 @@
 name: BoxMines
-version: '1.1.5'
+version: '1.1.6'
 main: io.github.novinity.boxmines.BoxMines
 api-version: '1.16'
 commands:
