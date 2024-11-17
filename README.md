@@ -4,6 +4,7 @@
 
     Easy to use and understand
     Select areas to create mines using WorldEdit
+    Support for creating mines without WorldEdit
     Edit the percentage of ores in each mine
     Add any block to each mine
     Automatically broadcast mine resets
@@ -11,7 +12,6 @@
 
 **Planned Features**:
 
-    Support for creating mines without WorldEdit
     Customizing all messages
     Optimizing mine resetting
 
@@ -36,6 +36,9 @@
       - Remove a block from a mine entirely
       - Example:
         - Remove cobblestone from the mine: /bm unset <mineName> cobblestone
+    /bm clear <mineName>
+      - **Permission**: boxmines.clear
+      - Clears the selected mine
     /bm tp <mineName>
       - **Permission**: boxmines.tp
       - Teleports the player to a mine
