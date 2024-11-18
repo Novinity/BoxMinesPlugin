@@ -6,6 +6,7 @@ import io.github.novinity.boxmines.utils.RegenIntervals;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class RuleSC extends SubCommand {
@@ -36,6 +37,25 @@ public class RuleSC extends SubCommand {
             return;
         }
 
+        if (args.length == 1) {
+            ArrayList<String> rules = new ArrayList<>() {{
+               add("announceRegen");
+               add("regenTime");
+               add("resetWhenEmpty");
+            }};
+            player.sendMessage("List of rules:");
+            String f = "";
+            int i = 0;
+            for (String rule : rules) {
+                if (i == rules.toArray().length - 1)
+                    f += rule;
+                else
+                    f += rule + ", ";
+                i++;
+            }
+            player.sendMessage(f);
+            return;
+        }
         if (args.length < 5) {
             player.sendMessage(ChatColor.RED + "Missing arguments!");
             return;

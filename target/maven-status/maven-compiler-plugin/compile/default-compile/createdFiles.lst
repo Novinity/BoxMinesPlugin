@@ -1,5 +1,6 @@
 io\github\novinity\boxmines\commands\subcommands\RuleSC.class
 io\github\novinity\boxmines\commands\subcommands\ListSC.class
+io\github\novinity\boxmines\commands\subcommands\RuleSC$1.class
 io\github\novinity\boxmines\utils\SelectArea.class
 io\github\novinity\boxmines\commands\CommandManager$3.class
 io\github\novinity\boxmines\commands\subcommands\Pos2SC.class
