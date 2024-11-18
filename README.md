@@ -45,13 +45,11 @@
     /bm regenerate <mineName>
       - **Permission**: boxmines.regenerate
       - Resets a mine
-    /bm setannounceregen <mineName>
-      - **Permission**: boxmines.setannounceregen
-      - Toggle whether or not the mine will announce when it resets
-    /bm setregentime <mineName> <time in seconds>
-      - **Permission**: boxmines.setregentime
-      - Sets the amount of time between automated resets on a mine.
-      - Set to 0 to disable
+    /bm rule <mineName> <setOption> <rule> <value>
+      - **Permission**: boxmines.rule
+      - Changes a rule on a mine
+      - Example:
+        - Set the mine to announce regeneration: /bm rule <mineName> set announceRegen true
     /bm reload
       - **Permission**: boxmines.reload
       - Reloads the plugin
