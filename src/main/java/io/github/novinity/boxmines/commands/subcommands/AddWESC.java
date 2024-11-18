@@ -44,9 +44,6 @@ public class AddWESC extends SubCommand {
         }
 
         boolean useWE = true;
-        BoxMines.getInstance().getLogger().log(Level.ALL, args[0]);
-        BoxMines.getInstance().getLogger().log(Level.ALL, args[1]);
-        BoxMines.getInstance().getLogger().log(Level.ALL, args[2]);
         if (args.length == 3 && args[2].equalsIgnoreCase("-i")) {
             useWE = false;
         }

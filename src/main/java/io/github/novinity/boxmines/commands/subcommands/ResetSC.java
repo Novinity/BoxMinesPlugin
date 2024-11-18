@@ -5,42 +5,42 @@ import io.github.novinity.boxmines.utils.RegenMine;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class RegenerateSC extends SubCommand {
+public class ResetSC extends SubCommand {
     @Override
     public String getName() {
-        return "regenerate";
+        return "reset";
     }
 
     @Override
     public String getDescription() {
-        return "Regenerate a mine";
+        return "reset a mine";
     }
 
     @Override
     public String getSyntax() {
-        return "/bm regenerate <minename>";
+        return "/bm reset <minename>";
     }
 
     @Override
     public String getRequiredPermission() {
-        return "boxmines.regenerate";
+        return "boxmines.reset";
     }
 
     @Override
     public void perform(Player player, String[] args) {
-        if (!player.hasPermission("boxmines.regenerate")) {
+        if (!player.hasPermission("boxmines.reset")) {
             player.sendMessage(ChatColor.RED + "No permission!");
             return;
         }
 
         if (args.length < 2 || args[1].isEmpty()) {
-            player.sendMessage(ChatColor.RED + "You need to provide a mine to regenerate!");
+            player.sendMessage(ChatColor.RED + "You need to provide a mine to reset!");
             return;
         }
 
         boolean success = RegenMine.regenMine(args[1]);
         if (success) {
-            player.sendMessage(ChatColor.GREEN + "Regenerated " + ChatColor.GOLD + args[1]);
+            player.sendMessage(ChatColor.GREEN + "Reset " + ChatColor.GOLD + args[1]);
         } else {
             player.sendMessage(ChatColor.RED + "Something went wrong! Make sure you have blocks set for the mine and that the mine exists.");
         }

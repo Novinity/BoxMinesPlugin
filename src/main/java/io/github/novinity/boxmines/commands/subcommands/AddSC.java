@@ -1,19 +1,14 @@
 package io.github.novinity.boxmines.commands.subcommands;
 
-//import com.sk89q.worldedit.WorldEdit;
-//import com.sk89q.worldedit.bukkit.BukkitAdapter;
-//import com.sk89q.worldedit.math.BlockVector3;
-//import com.sk89q.worldedit.regions.Region;
 import io.github.novinity.boxmines.BoxMines;
 import io.github.novinity.boxmines.commands.SubCommand;
-import io.github.novinity.boxmines.utils.PositionData;
-import io.github.novinity.boxmines.utils.PositionalDataObject;
-import io.github.novinity.boxmines.utils.Vector3;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import io.github.novinity.boxmines.utils.*;
+import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
 
-import java.util.logging.Level;
+import java.util.List;
 
 public class AddSC extends SubCommand {
     @Override
@@ -81,5 +76,7 @@ public class AddSC extends SubCommand {
         BoxMines.getInstance().saveConfig();
 
         player.sendMessage(ChatColor.GREEN + "Successfully added mine " + ChatColor.GOLD + mineName + ChatColor.GREEN + "!");
+
+        RegenIntervals.createClearInterval(mineName, 1);
     }
 }

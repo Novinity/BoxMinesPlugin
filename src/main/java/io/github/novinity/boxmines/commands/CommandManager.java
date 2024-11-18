@@ -27,15 +27,16 @@ public class CommandManager implements TabCompleter, CommandExecutor {
             subCommands.add(new AddSC());
         subCommands.add(new RemoveSC());
         subCommands.add(new ListSC());
-        subCommands.add(new SetRegenTimeSC());
+//        subCommands.add(new SetRegenTimeSC());
         subCommands.add(new SetSC());
         subCommands.add(new UnsetSC());
-        subCommands.add(new RegenerateSC());
+        subCommands.add(new ResetSC());
         subCommands.add(new TPSC());
         subCommands.add(new ReloadSC());
-        subCommands.add(new SetAnnounceRegenSC());
+//        subCommands.add(new SetAnnounceRegenSC());
         subCommands.add(new Pos1SC());
         subCommands.add(new Pos2SC());
+        subCommands.add(new RuleSC());
     }
 
     public ArrayList<SubCommand> getSubCommands() {
@@ -55,12 +56,14 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 add("set");
                 add("unset");
                 add("tp");
-                add("regenerate");
-                add("setregentime");
-                add("setannounceregen");
+                add("reset");
+                add("rule");
+//                add("setregentime");
+//                add("setannounceregen");
                 add("reload");
                 add("pos1");
                 add("pos2");
+                add("rule");
             }};
             return new ArrayList<String>() {{
                 for (String possibility : possibilities) {
@@ -70,8 +73,8 @@ public class CommandManager implements TabCompleter, CommandExecutor {
                 }
             }};
         } else if (args.length == 2) {
-            if (args[0].equals("remove") || args[0].equals("setregentime") || args[0].equals("set") || args[0].equals("unset") || args[0].equals("regenerate") ||
-                    args[0].equals("tp") || args[0].equals("setannounceregen") || args[0].equals("clear")) {
+            if (args[0].equals("remove") || args[0].equals("rule") || args[0].equals("set") || args[0].equals("unset") || args[0].equals("reset") ||
+                    args[0].equals("tp") || args[0].equals("clear")) {
                 try {
                     Set<String> keys = Objects.requireNonNull(BoxMines.getInstance().getConfig().getConfigurationSection("mines")).getKeys(false);
                     return new ArrayList<String>() {{
@@ -110,6 +113,18 @@ public class CommandManager implements TabCompleter, CommandExecutor {
             } else if (args[0].equals("add")) {
                 return new ArrayList<String>() {{
                     add("-i");
+                }};
+            } else if (args[0].equals("rule")) {
+                return new ArrayList<String>() {{
+                    add("set");
+                }};
+            }
+        } else if (args.length == 4) {
+            if (args[0].equals("rule")) {
+                return new ArrayList<String>() {{
+                    add("regenTime");
+                    add("announceRegen");
+                    add("resetWhenEmpty");
                 }};
             }
         }

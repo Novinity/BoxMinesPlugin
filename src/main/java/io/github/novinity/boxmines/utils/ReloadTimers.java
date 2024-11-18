@@ -16,6 +16,9 @@ public class ReloadTimers {
                 if (BoxMines.getInstance().getConfig().get("mines."+key+".regenInterval") != null && BoxMines.getInstance().getConfig().getInt("mines."+key+".regenInterval") > 0) {
                     RegenIntervals.createRegenInterval(key, BoxMines.getInstance().getConfig().getInt("mines."+key+".regenInterval"));
                 }
+                if (BoxMines.getInstance().getConfig().getBoolean("mines." + key + ".clearWhenEmpty")) {
+                    RegenIntervals.createClearInterval(key, 1);
+                }
             }
             return true;
         } catch (NullPointerException e) {
